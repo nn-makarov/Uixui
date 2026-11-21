@@ -2,7 +2,7 @@ import Link from "next/link"
 import {
   ArrowRight, Check, Clock3, Droplets, ShieldCheck, Sparkles,
   Sofa, Armchair, BedDouble, CircleCheck, Star, Leaf, HeartHandshake,
-  BadgeCheck, WandSparkles, CalendarCheck,
+  BadgeCheck, WandSparkles, CalendarCheck, Smile,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/layout/Header"
@@ -44,12 +44,13 @@ export default async function Home() {
     heroTitle: "Чистота, которую видно. Свежесть, которую чувствуешь.",
     heroSubtitle: "Профессиональная химчистка мягкой мебели у вас дома. Заботимся о любимых вещах — бережно и с вниманием к деталям.",
     phone: "",
+    serviceArea: "Москва",
     name: "Uixui",
   }
 
   return (
     <div className="landing-page min-h-screen overflow-hidden">
-      <Header companyName={data.name} phone={data.phone} />
+      <Header companyName={data.name} phone={data.phone} city={data.serviceArea || "Москва"} />
       <main>
         <section className="landing-hero relative">
           <div className="landing-hero-scene relative min-h-[680px] overflow-hidden md:min-h-[760px]" style={{ backgroundImage: `url("${heroImage}")` }}>
@@ -144,8 +145,10 @@ export default async function Home() {
               </div>
               <div className="relative z-10 grid gap-7 md:grid-cols-3 md:gap-10">
                 {steps.map((step, index) => <div key={step.n} className="landing-step border-t pt-5">
-                  <div className={`landing-step-mini mb-5 flex h-[94px] items-center gap-2 rounded-2xl px-3 ${index === 2 ? "landing-step-mini--hidden" : ""}`}>
-                    {index === 0 ? <><span className="landing-mini-object"><Sofa className="size-7"/></span><span className="landing-mini-object"><BedDouble className="size-7"/></span><span className="landing-mini-object"><Armchair className="size-7"/></span></> : index === 1 ? <span className="landing-mini-feature"><CalendarCheck className="size-9"/></span> : <span className="landing-mini-feature"><Droplets className="size-9"/></span>}
+                  <div className="landing-step-mini mb-5 flex h-[94px] items-center justify-center rounded-2xl px-3">
+                    <span className="landing-mini-feature" aria-hidden="true">
+                      {index === 0 ? <Sofa className="landing-step-icon" strokeWidth={1.8} /> : index === 1 ? <CalendarCheck className="landing-step-icon" strokeWidth={1.8} /> : <Smile className="landing-step-icon" strokeWidth={1.8} />}
+                    </span>
                   </div>
                   <span className="text-xs font-bold tracking-[.18em] text-primary">{step.n}</span><h3 className="mt-3 text-xl font-semibold">{step.title}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{step.text}</p>
                 </div>)}
