@@ -1,0 +1,182 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================
+// Компания (singleton)
+// ============================================================
+model Company {
+  id             String   @id @default("singleton")
+  name           String
+  phone          String
+  email          String?
+  address        String?
+  serviceArea    String
+  workingHours   String
+  heroTitle      String
+  heroSubtitle   String
+  aboutText      String
+  privacyVersion String   @default("1.0")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// ============================================================
+// Владелец
+// ============================================================
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(OWNER)
+  createdAt    DateTime @default(now())
+}
+
+enum Role {
+  OWNER
+}
+
+// ============================================================
+// Тарифы (singleton)
+// ============================================================
+model Tariff {
+  id                        String   @id @default("singleton")
+  priceSofa2                Int
+  priceSofa3                Int
+  priceSofaCorner           Int
+  priceArmchair             Int
+  priceRecliner             Int
+  priceMattressSingle       Int
+  priceMattressDouble       Int
+  priceChairSeat            Int
+  priceChairBack            Int
+  minOrder                  Int
+  strongDirtPercent         Int
+  mattressSecondSidePercent Int
+  outOfTownFee              Int
+  updatedAt                 DateTime @updatedAt
+}
+
+// ============================================================
+// Заявка
+// ============================================================
+model Order {
+  id              String      @id @default(cuid())
+  publicTokenHash String      @unique
+  publicTokenNonce String?
+  publicTokenIssuedAt DateTime
+  publicTokenExpiresAt DateTime
+  idempotencyKey  String?     @unique
+  status          OrderStatus @default(NEW)
+
+  customerName    String
+  customerPhone   String
+  address         String
+  desiredDate     DateTime?
+  desiredTime     String?
+  comment         String?
+  outOfTown       Boolean     @default(false)
+
+  consentPdAt      DateTime?
+  consentPdVersion String?
+
+  estimatedCleaning  Int
+  estimatedOutOfTown Int
+  estimatedTotal     Int
+  hasPhotoRequest    Boolean @default(false)
+
+  finalPrice     Int?
+  agreedDateTime DateTime?
+  adminNotes     String?
+
+  tariffSnapshot Json
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  items  OrderItem[]
+  photos OrderPhoto[]
+
+  @@index([status, createdAt])
+  @@index([publicTokenExpiresAt])
+}
+
+enum OrderStatus {
+  NEW
+  AGREED
+  COMPLETED
+  CANCELLED
+}
+
+model OrderItem {
+  id              String   @id @default(cuid())
+  orderId         String
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  category        String
+  variant         String
+  quantity        Int
+  strongDirt      Boolean  @default(false)
+  secondSide      Boolean  @default(false)
+  needsPhotoQuote Boolean  @default(false)
+  description     String?
+  unitPrice       Int?
+  lineTotal       Int?
+
+  @@index([orderId])
+}
+
+model OrderPhoto {
+  id         String   @id @default(cuid())
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  storageKey String
+  mimeType   String
+  size       Int
+  createdAt  DateTime @default(now())
+
+  @@index([orderId])
+}
+
+// ============================================================
+// Временные загрузки
+// ============================================================
+model TempUpload {
+  id         String   @id @default(cuid())
+  storageKey String   @unique
+  sessionId  String
+  mimeType   String
+  size       Int
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+
+  @@index([sessionId])
+  @@index([expiresAt])
+}
+
+// ============================================================
+// Инфраструктура безопасности
+// ============================================================
+model RateLimitCounter {
+  id          String   @id @default(cuid())
+  key         String
+  windowStart DateTime
+  count       Int      @default(0)
+
+  @@unique([key, windowStart])
+  @@index([windowStart])
+}
+
+model IdempotencyKey {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  orderId   String?
+  status    String   @default("IN_PROGRESS")
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+
+  @@index([expiresAt])
+}
