@@ -9,10 +9,14 @@ import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { prisma } from "@/lib/db"
 
-const sofaImage = "https://s3.neoth.ru/posts/c1b2bd1c-cd22-4550-9fc1-9a357fbb2a93.webp"
-const mattressImage = "https://www.matelasnostress.fr/42764-large_default/matelas-enveloppant-avec-soutien-ferme-en-latex-naturel-20-cm.jpg"
-const chairImage = "https://cosimogallery.com.sg/cdn/shop/files/151_c971aeb7-b64f-4d11-b105-24a55f019ebb.png?v=1776066786"
-const rugImage = "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85"
+// Reviewed image sources: each is a direct, visible photo matching the furniture/service.
+const heroImage = "https://images.unsplash.com/photo-1775029676739-86443af4010d?auto=format&fit=crop&w=1800&q=85"
+const sofaImage = "https://images.unsplash.com/photo-1775029676739-86443af4010d?auto=format&fit=crop&w=900&q=85"
+const mattressImage = "https://images.unsplash.com/photo-1524061614234-8449637d36ce?auto=format&fit=crop&w=900&q=85"
+const chairImage = "https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?auto=format&fit=crop&w=900&q=85"
+const rugImage = "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
+const cleaningDetailImage = "https://images.pexels.com/photos/4401538/pexels-photo-4401538.jpeg?cs=srgb&fm=jpg"
+
 
 const services = [
   { title: "Диваны", price: "от 2 500 ₽", detail: "Прямые, угловые и модульные", image: sofaImage, icon: Sofa, popular: true },
@@ -83,6 +87,10 @@ export default async function Home() {
                     <span><Sparkles className="mx-auto mb-1 size-4" /> чистота<br />и комфорт</span>
                   </div>
                 </div>
+              </div>
+              <div className="landing-cleaning-detail absolute right-4 top-4 z-10 overflow-hidden rounded-2xl border shadow-xl sm:right-6 sm:top-6">
+                <div className="landing-cleaning-detail-photo" style={{ backgroundImage: `url("\${cleaningDetailImage}")` }} role="img" aria-label="Профессиональная чистка обивки насадкой для экстрактора" />
+                <p className="px-3 py-2 text-[10px] font-semibold">Глубокая чистка ткани</p>
               </div>
               <div className="landing-floating-note absolute -bottom-5 left-4 flex items-center gap-3 rounded-2xl border px-4 py-3.5 shadow-xl md:-left-7 md:px-5">
                 <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><BadgeCheck className="size-5" /></div>
@@ -170,6 +178,21 @@ export default async function Home() {
                 {steps.map((step) => <div key={step.n} className="landing-step border-t pt-5"><span className="text-xs font-bold tracking-[.18em] text-primary">{step.n}</span><h3 className="mt-4 text-xl font-semibold">{step.title}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{step.text}</p></div>)}
               </div>
               <div className="relative z-10 mt-10"><Button asChild size="lg" className="landing-primary-btn h-12 rounded-full px-6"><Link href="/calculator">Перейти к расчёту <ArrowRight className="ml-1 size-4" /></Link></Button></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="landing-image-banner-section pb-12 md:pb-20">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="landing-image-banner relative overflow-hidden rounded-[2rem] border">
+              <div className="landing-image-banner-photo absolute inset-0" style={{ backgroundImage: `url("\${heroImage}")` }} role="img" aria-label="Уютный интерьер с чистым мягким диваном" />
+              <div className="landing-image-banner-overlay absolute inset-0" />
+              <div className="relative z-10 max-w-xl p-7 sm:p-10 md:p-12">
+                <p className="landing-kicker mb-3 text-xs font-bold uppercase tracking-[.2em] text-primary">Комфорт начинается дома</p>
+                <h2 className="landing-section-title text-3xl font-semibold tracking-[-.045em] sm:text-4xl">Дышите чистотой и живите комфортно</h2>
+                <p className="mt-3 max-w-md text-sm leading-6 text-muted-foreground">Профессиональный уход за мебелью — для свежести и уюта вашего дома.</p>
+                <Button asChild size="lg" className="landing-primary-btn mt-6 h-12 rounded-full px-6"><Link href="/calculator">Заказать чистку <ArrowRight className="ml-1 size-4" /></Link></Button>
+              </div>
             </div>
           </div>
         </section>
