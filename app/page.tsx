@@ -10,7 +10,7 @@ import { Footer } from "@/components/layout/Footer"
 import { prisma } from "@/lib/db"
 
 // Reviewed image sources: each is a direct, visible photo matching the furniture/service.
-const heroImage = cleaningDetailImage
+const heroImage = "https://images.pexels.com/photos/30238384/pexels-photo-30238384.jpeg?cs=srgb&dl=pexels-mohammadabbasi-30238384.jpg&fm=jpg"
 const sofaImage = "https://images.unsplash.com/photo-1743059199976-b709ec1e35f8?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=900"
 const mattressImage = "https://images.unsplash.com/photo-1647376036543-f9f543601a1d?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=900"
 const chairImage = "https://images.unsplash.com/photo-1765723640023-f39fbadba823?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=900"
