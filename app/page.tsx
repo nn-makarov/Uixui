@@ -10,12 +10,12 @@ import { Footer } from "@/components/layout/Footer"
 import { prisma } from "@/lib/db"
 
 // Reviewed image sources: each is a direct, visible photo matching the furniture/service.
-const heroImage = "https://images.unsplash.com/photo-1775029676739-86443af4010d?auto=format&fit=crop&w=1800&q=85"
-const sofaImage = "https://images.unsplash.com/photo-1775029676739-86443af4010d?auto=format&fit=crop&w=900&q=85"
-const mattressImage = "https://images.unsplash.com/photo-1524061614234-8449637d36ce?auto=format&fit=crop&w=900&q=85"
-const chairImage = "https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?auto=format&fit=crop&w=900&q=85"
+const heroImage = "https://images.unsplash.com/photo-1775029676739-86443af4010d?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=1800"
+const sofaImage = "https://images.unsplash.com/photo-1743059199976-b709ec1e35f8?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=900"
+const mattressImage = "https://images.unsplash.com/photo-1647376036543-f9f543601a1d?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=900"
+const chairImage = "https://images.unsplash.com/photo-1765723640023-f39fbadba823?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=900"
 const rugImage = "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85"
-const cleaningDetailImage = "https://images.pexels.com/photos/4401538/pexels-photo-4401538.jpeg?cs=srgb&fm=jpg"
+const cleaningDetailImage = "https://images.pexels.com/photos/30238384/pexels-photo-30238384.jpeg?cs=srgb&dl=pexels-mohammadabbasi-30238384.jpg&fm=jpg"
 
 
 const services = [
@@ -29,6 +29,7 @@ const assurances = [
   { icon: ShieldCheck, title: "Бережно к ткани", text: "Подбираем состав под материал и тип загрязнения." },
   { icon: Leaf, title: "Безопасные средства", text: "Работаем профессиональными составами для дома." },
   { icon: Clock3, title: "Выезд к вам", text: "Привозим оборудование — мебель остаётся дома." },
+  { icon: Sofa, title: "Разные виды мебели", text: "Диваны, матрасы, кресла и ковры." },
 ]
 
 const steps = [
