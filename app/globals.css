@@ -85,3 +85,156 @@
     @apply bg-background text-foreground antialiased selection:bg-primary/20;
   }
 }
+
+
+/* Landing page visual layer — uses the app's existing light/dark semantic tokens. */
+.landing-page {
+  --landing-glow: color-mix(in oklab, var(--primary) 12%, transparent);
+  --landing-panel: color-mix(in oklab, var(--card) 86%, var(--background));
+  --landing-line: color-mix(in oklab, var(--border) 75%, var(--primary) 8%);
+}
+.landing-hero {
+  background:
+    radial-gradient(ellipse at 82% 14%, var(--landing-glow), transparent 34%),
+    radial-gradient(ellipse at 5% 88%, color-mix(in oklab, var(--primary) 6%, transparent), transparent 28%);
+}
+.landing-eyebrow { color: var(--primary); background: color-mix(in oklab, var(--primary) 5%, var(--card)); border-color: var(--landing-line); }
+.landing-title { color: var(--foreground); text-wrap: balance; }
+.landing-title::selection { background: color-mix(in oklab, var(--primary) 24%, transparent); }
+.landing-primary-btn { box-shadow: 0 12px 28px color-mix(in oklab, var(--primary) 22%, transparent); transition: transform .2s ease, box-shadow .2s ease; }
+.landing-primary-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 34px color-mix(in oklab, var(--primary) 28%, transparent); }
+.landing-hero-image { background-color: var(--secondary); background-position: center; background-size: cover; box-shadow: 0 28px 80px color-mix(in oklab, var(--foreground) 13%, transparent); }
+.landing-image-shade { background: linear-gradient(180deg, transparent 45%, color-mix(in oklab, #080d18 48%, transparent)); }
+.landing-image-caption { color: #fff; background: color-mix(in oklab, #101722 62%, transparent); border-color: color-mix(in oklab, white 28%, transparent); }
+.landing-image-stamp { color: white; background: color-mix(in oklab, #101722 38%, transparent); border-color: color-mix(in oklab, white 38%, transparent); }
+.landing-floating-note { background: var(--card); border-color: var(--landing-line); }
+.landing-trust-wrap { position: relative; z-index: 2; }
+.landing-trust { background: var(--landing-panel); border-color: var(--landing-line); box-shadow: 0 18px 45px color-mix(in oklab, var(--foreground) 5%, transparent); }
+.landing-trust-icon { color: var(--primary); background: color-mix(in oklab, var(--primary) 9%, var(--card)); }
+.landing-section-title { color: var(--foreground); text-wrap: balance; }
+.landing-service-card { background: var(--card); border-color: var(--landing-line); }
+.landing-service-image { background: color-mix(in oklab, var(--secondary) 72%, var(--background)); }
+.landing-service-image-overlay { background: linear-gradient(180deg, transparent 55%, color-mix(in oklab, var(--foreground) 8%, transparent)); }
+.landing-service-icon { color: var(--foreground); background: color-mix(in oklab, var(--card) 86%, transparent); border-color: var(--landing-line); }
+.landing-service-arrow { color: var(--primary); background: color-mix(in oklab, var(--primary) 9%, var(--card)); }
+.landing-benefits-section { background: color-mix(in oklab, var(--secondary) 24%, transparent); }
+.landing-benefit-card { background: var(--card); border-color: var(--landing-line); transition: transform .2s ease, border-color .2s ease; }
+.landing-benefit-card:hover { transform: translateY(-3px); border-color: color-mix(in oklab, var(--primary) 38%, var(--border)); }
+.landing-process { background: var(--landing-panel); border-color: var(--landing-line); }
+.landing-process::before { content: ""; position: absolute; width: 26rem; height: 26rem; right: -8rem; top: -12rem; border-radius: 50%; background: var(--landing-glow); filter: blur(28px); pointer-events: none; }
+.landing-step { border-color: var(--landing-line); }
+.landing-final-cta { background: linear-gradient(120deg, color-mix(in oklab, var(--primary) 8%, var(--card)), var(--card) 70%); border-color: var(--landing-line); }
+.landing-kicker { letter-spacing: .2em; }
+@media (max-width: 640px) {
+  .landing-title { font-size: clamp(2.5rem, 12vw, 3.5rem); }
+  .landing-hero-image { border-radius: 1.5rem; }
+  .landing-trust { padding: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-primary-btn, .landing-benefit-card, .landing-service-card, .landing-service-image > div { transition: none; }
+}
+
+
+/* Calculator choice cards: consistent, accessible theme-aware furniture miniatures */
+.calc-option-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.calc-option-tile { position:relative; display:flex; min-width:0; flex-direction:column; overflow:hidden; text-align:left; border:1px solid var(--border); border-radius:18px; background:var(--card); color:var(--foreground); padding:14px; cursor:pointer; transition:border-color .18s ease,background .18s ease,transform .18s ease,box-shadow .18s ease; }
+.calc-option-tile:hover { transform:translateY(-2px); border-color:color-mix(in oklab,var(--primary) 45%,var(--border)); }
+.calc-option-tile.is-selected { border-color:var(--primary); background:color-mix(in oklab,var(--primary) 6%,var(--card)); box-shadow:0 0 0 1px color-mix(in oklab,var(--primary) 28%,transparent),0 10px 28px color-mix(in oklab,var(--primary) 9%,transparent); }
+.calc-option-art { display:flex; min-height:108px; align-items:center; justify-content:center; border-radius:13px; background:linear-gradient(145deg,color-mix(in oklab,var(--primary) 7%,var(--secondary)),var(--secondary)); color:color-mix(in oklab,var(--primary) 75%,var(--foreground)); }
+.calc-furniture-sketch { width:100%; max-width:148px; height:100px; overflow:visible; }
+.calc-option-copy { display:flex; flex:1; flex-direction:column; padding:12px 2px 2px; }
+.calc-option-title { font-size:14px; font-weight:650; line-height:1.35; }
+.calc-option-note { min-height:34px; margin-top:5px; color:var(--muted-foreground); font-size:11px; line-height:1.5; }
+.calc-option-price { margin-top:10px; color:var(--primary); font-size:13px; font-weight:700; }
+.calc-option-check { position:absolute; top:10px; right:10px; display:flex; width:25px; height:25px; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:50%; background:var(--card); color:var(--muted-foreground); font-size:13px; }
+.calc-option-tile.is-selected .calc-option-check { border-color:var(--primary); background:var(--primary); color:var(--primary-foreground); }
+@media(min-width:720px) { .calc-option-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:390px) { .calc-option-grid { grid-template-columns:1fr; } .calc-option-tile { flex-direction:row; gap:12px; } .calc-option-art { width:100px; min-height:90px; flex-shrink:0; } .calc-option-copy { padding:4px 0; } .calc-option-note { min-height:0; } }
+
+
+/* Reference polish: warm porcelain in light mode, ink/navy in dark mode. */
+.landing-hero { background:radial-gradient(ellipse at 80% 10%,color-mix(in oklab,var(--primary) 9%,transparent),transparent 38%); }
+.landing-hero-image { background-position:center 54%; }
+.landing-image-shade { background:linear-gradient(90deg,color-mix(in oklab,var(--background) 2%,transparent) 0%,transparent 42%),linear-gradient(0deg,color-mix(in oklab,#101722 42%,transparent),transparent 42%); }
+.landing-image-caption { background:color-mix(in oklab,var(--card) 88%,transparent); color:var(--foreground); border-color:color-mix(in oklab,var(--border) 76%,transparent); }
+.landing-image-stamp { color:var(--foreground); background:color-mix(in oklab,var(--card) 82%,transparent); border-color:var(--border); }
+.dark .landing-image-caption { background:color-mix(in oklab,#0b1524 76%,transparent); color:#f7f9fc; border-color:color-mix(in oklab,#dbeafe 20%,transparent); }
+.dark .landing-image-stamp { color:#f7f9fc; background:color-mix(in oklab,#0b1524 72%,transparent); border-color:color-mix(in oklab,#dbeafe 24%,transparent); }
+.landing-cleaning-detail { width:clamp(124px,29%,190px); background:var(--card); border-color:color-mix(in oklab,var(--border) 78%,transparent); color:var(--foreground); }
+.landing-cleaning-detail-photo { height:clamp(82px,12vw,132px); background-position:center; background-size:cover; }
+.landing-cleaning-detail p { background:var(--card); }
+.landing-service-image > div:first-child { background-position:center; }
+.landing-service-card { box-shadow:0 4px 18px color-mix(in oklab,var(--foreground) 2%,transparent); }
+.landing-service-card:hover { box-shadow:0 16px 36px color-mix(in oklab,var(--foreground) 9%,transparent); }
+.landing-image-banner { min-height:280px; background:var(--secondary); border-color:var(--landing-line); }
+.landing-image-banner-photo { background-size:cover; background-position:center 60%; transform:scale(1.01); }
+.landing-image-banner-overlay { background:linear-gradient(90deg,color-mix(in oklab,var(--card) 96%,transparent) 0%,color-mix(in oklab,var(--card) 88%,transparent) 43%,transparent 100%); }
+.dark .landing-image-banner-overlay { background:linear-gradient(90deg,color-mix(in oklab,#0d1726 96%,transparent) 0%,color-mix(in oklab,#0d1726 85%,transparent) 43%,color-mix(in oklab,#0d1726 8%,transparent) 100%); }
+.landing-image-banner .landing-section-title { max-width:560px; }
+@media(max-width:640px) {
+  .landing-cleaning-detail { width:126px; right:12px; top:12px; }
+  .landing-cleaning-detail-photo { height:78px; }
+  .landing-image-banner { min-height:360px; }
+  .landing-image-banner-overlay { background:linear-gradient(90deg,color-mix(in oklab,var(--card) 96%,transparent),color-mix(in oklab,var(--card) 82%,transparent)); }
+  .dark .landing-image-banner-overlay { background:linear-gradient(90deg,color-mix(in oklab,#0d1726 95%,transparent),color-mix(in oklab,#0d1726 80%,transparent)); }
+}
+
+
+/* Marked-reference revision: photographic hero, quiet section backgrounds, no floating hero cards. */
+.landing-hero { background:var(--background); }
+.landing-hero-scene { background-size:cover; background-position:center 56%; background-color:var(--secondary); }
+.landing-hero-overlay { background:linear-gradient(90deg,color-mix(in oklab,#fffaf5 97%,transparent) 0%,color-mix(in oklab,#fffaf5 90%,transparent) 37%,color-mix(in oklab,#fffaf5 54%,transparent) 58%,transparent 82%),linear-gradient(0deg,color-mix(in oklab,#fffaf5 60%,transparent),transparent 24%); }
+.dark .landing-hero-overlay { background:linear-gradient(90deg,color-mix(in oklab,#0d1725 96%,transparent) 0%,color-mix(in oklab,#0d1725 88%,transparent) 35%,color-mix(in oklab,#0d1725 44%,transparent) 57%,transparent 82%),linear-gradient(0deg,color-mix(in oklab,#0d1725 72%,transparent),transparent 27%); }
+.landing-hero .landing-title { max-width:650px; }
+.landing-hero-secondary { color:var(--foreground); border-color:color-mix(in oklab,var(--foreground) 20%,transparent); background:color-mix(in oklab,var(--card) 74%,transparent); backdrop-filter:blur(12px); }
+.landing-hero-trust { background:color-mix(in oklab,var(--card) 86%,transparent); border-color:color-mix(in oklab,var(--border) 80%,transparent); backdrop-filter:blur(18px); box-shadow:0 12px 38px color-mix(in oklab,#0b1421 12%,transparent); }
+.landing-hero-trust-icon { background:color-mix(in oklab,var(--primary) 10%,var(--card)); color:var(--primary); }
+.landing-eyebrow { color:var(--foreground); background:color-mix(in oklab,var(--card) 78%,transparent); border-color:color-mix(in oklab,var(--border) 82%,transparent); backdrop-filter:blur(12px); }
+.dark .landing-eyebrow { color:#eaf2ff; background:color-mix(in oklab,#17263b 84%,transparent); border-color:color-mix(in oklab,#d9e8ff 14%,transparent); }
+.landing-benefits-section { background:transparent !important; }
+.landing-benefits-section .landing-benefit-card { background:var(--card); }
+.landing-process { background:transparent !important; border-color:var(--landing-line); }
+.landing-process::before { display:none; }
+.landing-step-mini { background:color-mix(in oklab,var(--secondary) 60%,var(--card)); border:1px solid var(--landing-line); }
+.landing-mini-object { display:flex; height:58px; flex:1; align-items:center; justify-content:center; border-radius:13px; background:var(--card); color:var(--primary); border:1px solid var(--landing-line); }
+.landing-mini-feature { display:flex; width:100%; align-items:center; justify-content:center; color:var(--primary); }
+.landing-service-image { height:clamp(150px,18vw,220px); }
+.landing-service-card { border-radius:1.2rem; }
+.landing-service-card > div:last-child { padding:16px 17px 18px; }
+.landing-service-card h3 { font-size:15px; }
+.landing-service-card .landing-service-arrow { border:1px solid var(--landing-line); }
+.landing-image-banner-section { display:none !important; }
+@media(max-width:700px) {
+ .landing-hero-scene { background-position:62% center; }
+ .landing-hero-overlay { background:linear-gradient(90deg,color-mix(in oklab,#fffaf5 95%,transparent),color-mix(in oklab,#fffaf5 82%,transparent) 62%,color-mix(in oklab,#fffaf5 45%,transparent)),linear-gradient(0deg,color-mix(in oklab,#fffaf5 92%,transparent),transparent 58%); }
+ .dark .landing-hero-overlay { background:linear-gradient(90deg,color-mix(in oklab,#0d1725 94%,transparent),color-mix(in oklab,#0d1725 80%,transparent) 62%,color-mix(in oklab,#0d1725 40%,transparent)),linear-gradient(0deg,color-mix(in oklab,#0d1725 90%,transparent),transparent 58%); }
+ .landing-hero-trust { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+
+/* User-provided hero photo: sofa + extraction cleaner. Keep text legible over its left side. */
+.landing-hero-scene { background-position: center center; background-size: cover; }
+.landing-hero-overlay {
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--background) 97%, transparent) 0%,
+    color-mix(in oklab, var(--background) 91%, transparent) 30%,
+    color-mix(in oklab, var(--background) 70%, transparent) 46%,
+    color-mix(in oklab, var(--background) 12%, transparent) 73%,
+    transparent 100%);
+}
+.landing-step-mini--hidden { display: none !important; }
+@media (max-width: 767px) {
+  .landing-hero-scene { background-position: 61% center; }
+  .landing-hero-overlay {
+    background: linear-gradient(90deg,
+      color-mix(in oklab, var(--background) 97%, transparent) 0%,
+      color-mix(in oklab, var(--background) 88%, transparent) 48%,
+      color-mix(in oklab, var(--background) 44%, transparent) 100%);
+  }
+}
+
+
+/* Consistent, equally-sized pictograms in the three-step process */
+.landing-step-mini { display:flex; align-items:center; justify-content:center; }
+.landing-step-mini .landing-mini-feature { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
+.landing-step-icon { width:36px; height:36px; min-width:36px; min-height:36px; flex:0 0 36px; }

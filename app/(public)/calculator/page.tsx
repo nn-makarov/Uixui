@@ -30,6 +30,45 @@ const TARIFFS = {
   OTHER: [{ variant: "other", title: "Другая мебель", price: 0 }],
 }
 
+function FurnitureSketch({ variant }: { variant: string }) {
+  const mattress = variant === "single" || variant === "double"
+  const chair = ["armchair", "recliner", "seat", "back"].includes(variant)
+  const corner = variant === "corner"
+  const other = variant === "other"
+  return (
+    <svg viewBox="0 0 120 76" aria-hidden="true" className="calc-furniture-sketch">
+      <ellipse cx="60" cy="66" rx="43" ry="5" fill="currentColor" opacity=".08" />
+      {mattress ? <g stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round">
+        <rect x={variant === "single" ? 23 : 13} y="21" width={variant === "single" ? 74 : 94} height="32" rx="6" fill="#f8f4ed"/>
+        <path d="M18 34 H102 M18 43 H102" stroke="#b8c8d8" strokeWidth="1.5" strokeDasharray="3 3"/>
+        <path d="M23 53 V59 M97 53 V59" strokeWidth="3" strokeLinecap="round"/>
+        <rect x="28" y="15" width="24" height="12" rx="5" fill="#fff"/><rect x="68" y="15" width="24" height="12" rx="5" fill="#fff"/>
+      </g> : chair ? <g stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round">
+        <path d="M34 18 Q34 12 41 12 H76 Q84 12 84 20 V43 H34Z" fill="#d9c7b2"/>
+        <rect x="27" y="38" width="66" height="20" rx="8" fill="#c5ad95"/>
+        <path d="M29 43 H91 M36 58 L32 65 M84 58 L88 65" fill="none" strokeLinecap="round"/>
+        <path d={variant==="recliner"?"M82 44 L99 34 L103 42 L91 52":"M29 24 L20 24 V48 H29 M91 24 H100 V48 H91"} fill="#d9c7b2"/>
+      </g> : other ? <g stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round">
+        <rect x="31" y="16" width="58" height="42" rx="12" fill="#d9c7b2"/><path d="M44 29 H76 M44 38 H69" stroke="#fff" strokeWidth="3" strokeLinecap="round"/>
+        <path d="M60 5 V12 M60 62 V69 M21 37 H28 M92 37 H99" stroke="#6aa8f5" strokeLinecap="round"/>
+      </g> : <g stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round">
+        <path d={corner?"M18 28 Q18 21 26 21 H65 Q72 21 72 28 V39 H103 V53 H18Z":"M19 28 Q19 21 27 21 H93 Q101 21 101 28 V43 H19Z"} fill="#d9c7b2"/>
+        {corner ? <path d="M72 28 Q72 21 80 21 H94 Q103 21 103 29 V43 H72Z" fill="#c5ad95"/> : null}
+        <path d={variant==="sofa3"?"M43 24 V42 M76 24 V42":"M60 24 V42"} stroke="#f5e9db" strokeWidth="2"/>
+        <rect x="15" y="39" width={corner?92:90} height="18" rx="7" fill="#c5ad95"/>
+        <path d="M24 57 L21 65 M94 57 L97 65" fill="none" strokeLinecap="round"/>
+      </g>}
+    </svg>
+  )
+}
+const variantNotes: Record<string, string> = {
+  sofa2: "Компактный диван на 2 посадочных места", sofa3: "Просторный диван на 3 посадочных места",
+  corner: "Угловая модель с дополнительной секцией", armchair: "Мягкое кресло с подлокотниками",
+  recliner: "Кресло с раскладывающейся спинкой", single: "Матрас для одной спальной зоны",
+  double: "Широкий матрас для двоих", seat: "Чистим мягкую часть сиденья",
+  back: "Сиденье и мягкая спинка стула", other: "Пуф, изголовье и другие изделия",
+}
+
 export default function CalculatorPage() {
   const { addItem, items } = useCartStore()
   const [livePrices, setLivePrices] = useState<Record<string, number>>({})
@@ -113,16 +152,19 @@ export default function CalculatorPage() {
                 ))}
               </div>
 
-              <div className="grid gap-3">
+              <div className="calc-option-grid">
                 {TARIFFS[category].map((item, idx) => (
-                  <div
-                    key={item.variant}
+                  <button key={item.variant} type="button" aria-pressed={selectedVariant === idx}
                     onClick={() => setSelectedVariant(idx)}
-                    className={`p-4 border rounded-xl cursor-pointer flex justify-between items-center transition-colors ${selectedVariant === idx ? 'border-primary bg-primary/5' : 'hover:border-primary/50'}`}
-                  >
-                    <span className="font-medium">{item.title}</span>
-                    <span className="text-muted-foreground">{category === "OTHER" ? "По фото" : `${((livePrices[item.variant] ?? item.price) / 100).toLocaleString('ru-RU')} ₽`}</span>
-                  </div>
+                    className={`calc-option-tile ${selectedVariant === idx ? "is-selected" : ""}`}>
+                    <span className="calc-option-art"><FurnitureSketch variant={item.variant} /></span>
+                    <span className="calc-option-copy">
+                      <span className="calc-option-title">{item.title}</span>
+                      <span className="calc-option-note">{variantNotes[item.variant]}</span>
+                      <span className="calc-option-price">{category === "OTHER" ? "По фото" : `${((livePrices[item.variant] ?? item.price) / 100).toLocaleString('ru-RU')} ₽`}</span>
+                    </span>
+                    <span className="calc-option-check" aria-hidden="true">{selectedVariant === idx ? "✓" : "+"}</span>
+                  </button>
                 ))}
               </div>
             </div>
