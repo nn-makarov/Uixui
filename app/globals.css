@@ -150,3 +150,31 @@
 .calc-option-tile.is-selected .calc-option-check { border-color:var(--primary); background:var(--primary); color:var(--primary-foreground); }
 @media(min-width:720px) { .calc-option-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
 @media(max-width:390px) { .calc-option-grid { grid-template-columns:1fr; } .calc-option-tile { flex-direction:row; gap:12px; } .calc-option-art { width:100px; min-height:90px; flex-shrink:0; } .calc-option-copy { padding:4px 0; } .calc-option-note { min-height:0; } }
+
+
+/* Reference polish: warm porcelain in light mode, ink/navy in dark mode. */
+.landing-hero { background:radial-gradient(ellipse at 80% 10%,color-mix(in oklab,var(--primary) 9%,transparent),transparent 38%); }
+.landing-hero-image { background-position:center 54%; }
+.landing-image-shade { background:linear-gradient(90deg,color-mix(in oklab,var(--background) 2%,transparent) 0%,transparent 42%),linear-gradient(0deg,color-mix(in oklab,#101722 42%,transparent),transparent 42%); }
+.landing-image-caption { background:color-mix(in oklab,var(--card) 88%,transparent); color:var(--foreground); border-color:color-mix(in oklab,var(--border) 76%,transparent); }
+.landing-image-stamp { color:var(--foreground); background:color-mix(in oklab,var(--card) 82%,transparent); border-color:var(--border); }
+.dark .landing-image-caption { background:color-mix(in oklab,#0b1524 76%,transparent); color:#f7f9fc; border-color:color-mix(in oklab,#dbeafe 20%,transparent); }
+.dark .landing-image-stamp { color:#f7f9fc; background:color-mix(in oklab,#0b1524 72%,transparent); border-color:color-mix(in oklab,#dbeafe 24%,transparent); }
+.landing-cleaning-detail { width:clamp(124px,29%,190px); background:var(--card); border-color:color-mix(in oklab,var(--border) 78%,transparent); color:var(--foreground); }
+.landing-cleaning-detail-photo { height:clamp(82px,12vw,132px); background-position:center; background-size:cover; }
+.landing-cleaning-detail p { background:var(--card); }
+.landing-service-image > div:first-child { background-position:center; }
+.landing-service-card { box-shadow:0 4px 18px color-mix(in oklab,var(--foreground) 2%,transparent); }
+.landing-service-card:hover { box-shadow:0 16px 36px color-mix(in oklab,var(--foreground) 9%,transparent); }
+.landing-image-banner { min-height:280px; background:var(--secondary); border-color:var(--landing-line); }
+.landing-image-banner-photo { background-size:cover; background-position:center 60%; transform:scale(1.01); }
+.landing-image-banner-overlay { background:linear-gradient(90deg,color-mix(in oklab,var(--card) 96%,transparent) 0%,color-mix(in oklab,var(--card) 88%,transparent) 43%,transparent 100%); }
+.dark .landing-image-banner-overlay { background:linear-gradient(90deg,color-mix(in oklab,#0d1726 96%,transparent) 0%,color-mix(in oklab,#0d1726 85%,transparent) 43%,color-mix(in oklab,#0d1726 8%,transparent) 100%); }
+.landing-image-banner .landing-section-title { max-width:560px; }
+@media(max-width:640px) {
+  .landing-cleaning-detail { width:126px; right:12px; top:12px; }
+  .landing-cleaning-detail-photo { height:78px; }
+  .landing-image-banner { min-height:360px; }
+  .landing-image-banner-overlay { background:linear-gradient(90deg,color-mix(in oklab,var(--card) 96%,transparent),color-mix(in oklab,var(--card) 82%,transparent)); }
+  .dark .landing-image-banner-overlay { background:linear-gradient(90deg,color-mix(in oklab,#0d1726 95%,transparent),color-mix(in oklab,#0d1726 80%,transparent)); }
+}
