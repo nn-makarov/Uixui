@@ -77,7 +77,7 @@ export default async function Home() {
             </div>
 
             <div className="landing-hero-visual relative mx-auto w-full max-w-[690px] lg:ml-auto">
-              <div className="landing-hero-image relative min-h-[360px] overflow-hidden rounded-[2rem] sm:min-h-[500px] lg:min-h-[570px]" role="img" aria-label="Светлый современный интерьер с чистым мягким диваном" style={{ backgroundImage: `url("${sofaImage}")` }}>
+              <div className="landing-hero-image relative min-h-[360px] overflow-hidden rounded-[2rem] sm:min-h-[500px] lg:min-h-[570px]" role="img" aria-label="Светлый современный интерьер с чистым мягким диваном" style={{ backgroundImage: `url("${heroImage}")` }}>
                 <div className="landing-image-shade absolute inset-0" />
                 <div className="absolute inset-x-5 bottom-5 flex items-end justify-between gap-4 sm:inset-x-8 sm:bottom-8">
                   <div className="landing-image-caption max-w-xs rounded-2xl border px-5 py-4 backdrop-blur-xl">
@@ -90,7 +90,7 @@ export default async function Home() {
                 </div>
               </div>
               <div className="landing-cleaning-detail absolute right-4 top-4 z-10 overflow-hidden rounded-2xl border shadow-xl sm:right-6 sm:top-6">
-                <div className="landing-cleaning-detail-photo" style={{ backgroundImage: `url("\${cleaningDetailImage}")` }} role="img" aria-label="Профессиональная чистка обивки насадкой для экстрактора" />
+                <div className="landing-cleaning-detail-photo" style={{ backgroundImage: `url("${cleaningDetailImage}")` }} role="img" aria-label="Профессиональная чистка обивки насадкой для экстрактора" />
                 <p className="px-3 py-2 text-[10px] font-semibold">Глубокая чистка ткани</p>
               </div>
               <div className="landing-floating-note absolute -bottom-5 left-4 flex items-center gap-3 rounded-2xl border px-4 py-3.5 shadow-xl md:-left-7 md:px-5">
@@ -186,7 +186,7 @@ export default async function Home() {
         <section className="landing-image-banner-section pb-12 md:pb-20">
           <div className="container mx-auto px-4 md:px-6">
             <div className="landing-image-banner relative overflow-hidden rounded-[2rem] border">
-              <div className="landing-image-banner-photo absolute inset-0" style={{ backgroundImage: `url("\${heroImage}")` }} role="img" aria-label="Уютный интерьер с чистым мягким диваном" />
+              <div className="landing-image-banner-photo absolute inset-0" style={{ backgroundImage: `url("${heroImage}")` }} role="img" aria-label="Уютный интерьер с чистым мягким диваном" />
               <div className="landing-image-banner-overlay absolute inset-0" />
               <div className="relative z-10 max-w-xl p-7 sm:p-10 md:p-12">
                 <p className="landing-kicker mb-3 text-xs font-bold uppercase tracking-[.2em] text-primary">Комфорт начинается дома</p>
