@@ -92,7 +92,7 @@ export default function AdminCompanyPage() {
             <label className="space-y-1 text-sm">Телефон<Input required value={company.phone} onChange={(e) => update("phone", e.target.value)} /></label>
             <label className="space-y-1 text-sm">Email<Input type="email" value={company.email} onChange={(e) => update("email", e.target.value)} /></label>
             <label className="space-y-1 text-sm">Адрес<Input value={company.address} onChange={(e) => update("address", e.target.value)} /></label>
-            <label className="space-y-1 text-sm">Зона выезда<Input required value={company.serviceArea} onChange={(e) => update("serviceArea", e.target.value)} /></label>
+            <label className="space-y-1 text-sm">Город / зона выезда (показывается в шапке)<Input required value={company.serviceArea} onChange={(e) => update("serviceArea", e.target.value)} /></label>
             <label className="space-y-1 text-sm">Часы работы<Input required value={company.workingHours} onChange={(e) => update("workingHours", e.target.value)} /></label>
           </div>
         </section>
