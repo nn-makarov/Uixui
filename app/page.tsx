@@ -10,7 +10,7 @@ import { Footer } from "@/components/layout/Footer"
 import { prisma } from "@/lib/db"
 
 // Reviewed image sources: each is a direct, visible photo matching the furniture/service.
-const heroImage = "https://images.pexels.com/photos/30238384/pexels-photo-30238384.jpeg?cs=srgb&dl=pexels-mohammadabbasi-30238384.jpg&fm=jpg"
+const heroImage = "https://static.wixstatic.com/media/db2518_941b7f356c8540f29406d50651403f8b~mv2.png/v1/fill/w_1800,h_1050,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/ai-generated-IMAGE.png"
 const sofaImage = "https://images.unsplash.com/photo-1743059199976-b709ec1e35f8?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=900"
 const mattressImage = "https://images.unsplash.com/photo-1647376036543-f9f543601a1d?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=900"
 const chairImage = "https://images.unsplash.com/photo-1765723640023-f39fbadba823?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=85&w=900"
@@ -65,10 +65,6 @@ export default async function Home() {
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <Button asChild size="lg" className="landing-primary-btn h-13 rounded-full px-7 text-base"><Link href="/calculator">Рассчитать стоимость <ArrowRight className="ml-1 size-4" /></Link></Button>
                   <Button asChild size="lg" variant="outline" className="landing-hero-secondary h-13 rounded-full px-7 text-base"><Link href="#services">Узнать больше <ArrowRight className="ml-1 size-4" /></Link></Button>
-                </div>
-                <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 text-sm text-muted-foreground">
-                  <span className="inline-flex items-center gap-2"><Check className="size-4 text-primary" /> Выезд на дом</span>
-                  <span className="inline-flex items-center gap-2"><Check className="size-4 text-primary" /> Бережно к ткани</span>
                 </div>
               </div>
             </div>
