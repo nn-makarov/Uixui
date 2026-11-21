@@ -210,3 +210,25 @@
  .dark .landing-hero-overlay { background:linear-gradient(90deg,color-mix(in oklab,#0d1725 94%,transparent),color-mix(in oklab,#0d1725 80%,transparent) 62%,color-mix(in oklab,#0d1725 40%,transparent)),linear-gradient(0deg,color-mix(in oklab,#0d1725 90%,transparent),transparent 58%); }
  .landing-hero-trust { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
+
+
+/* User-provided hero photo: sofa + extraction cleaner. Keep text legible over its left side. */
+.landing-hero-scene { background-position: center center; background-size: cover; }
+.landing-hero-overlay {
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--background) 97%, transparent) 0%,
+    color-mix(in oklab, var(--background) 91%, transparent) 30%,
+    color-mix(in oklab, var(--background) 70%, transparent) 46%,
+    color-mix(in oklab, var(--background) 12%, transparent) 73%,
+    transparent 100%);
+}
+.landing-step-mini--hidden { display: none !important; }
+@media (max-width: 767px) {
+  .landing-hero-scene { background-position: 61% center; }
+  .landing-hero-overlay {
+    background: linear-gradient(90deg,
+      color-mix(in oklab, var(--background) 97%, transparent) 0%,
+      color-mix(in oklab, var(--background) 88%, transparent) 48%,
+      color-mix(in oklab, var(--background) 44%, transparent) 100%);
+  }
+}
