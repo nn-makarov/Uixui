@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300"><defs>
+ <linearGradient id="fabric" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#f4e9dc"/><stop offset=".52" stop-color="#d9c7b5"/><stop offset="1" stop-color="#b9a38f"/></linearGradient>
+ <linearGradient id="seat" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f0e4d8"/><stop offset="1" stop-color="#c9b5a1"/></linearGradient>
+ <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b78a5c"/><stop offset="1" stop-color="#69482e"/></linearGradient>
+ <linearGradient id="highlight" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#76a7ff" stop-opacity=".62"/><stop offset="1" stop-color="#3678f6" stop-opacity=".3"/></linearGradient>
+ <pattern id="weave" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 1H5M1 0V5" stroke="#fff" stroke-opacity=".13" stroke-width=".7"/></pattern>
+ <filter id="shadow" x="-30%" y="-50%" width="160%" height="200%"><feGaussianBlur stdDeviation="9"/></filter>
+ </defs>
+ <ellipse cx="240" cy="265" rx="170" ry="13" fill="#53627b" opacity=".18" filter="url(#shadow)"/><g stroke="#9f8976" stroke-width="2" stroke-linejoin="round">
+   <path d="M96 117Q96 82 128 82H352Q384 82 384 117V188H96Z" fill="url(#fabric)"/>
+   <path d="M110 145H370V215H110Z" fill="url(#seat)"/>
+   <path d="M110 146H370V209H110Z" fill="url(#highlight)"/>
+   <path d="M112 111Q112 94 130 94H178Q195 94 195 111V146H112Z" fill="url(#seat)"/><path d="M190 151V210" stroke="#fff" stroke-opacity=".45" stroke-width="2"/><path d="M212 111Q212 94 230 94H278Q295 94 295 111V146H212Z" fill="url(#seat)"/><path d="M190 151V210" stroke="#fff" stroke-opacity=".45" stroke-width="2"/><path d="M312 111Q312 94 330 94H378Q395 94 395 111V146H312Z" fill="url(#seat)"/><path d="M190 151V210" stroke="#fff" stroke-opacity=".45" stroke-width="2"/>
+   <path d="M80 130Q80 105 104 105H130V214H104Q80 214 80 190Z" fill="url(#fabric)"/>
+   <path d="M350 105H376Q400 105 400 130V190Q400 214 376 214H350Z" fill="url(#fabric)"/>
+   <path d="M115 216L110 250M365 216L370 250" stroke="url(#wood)" stroke-width="12" stroke-linecap="round"/>
+   <path d="M98 186H382" stroke="#fff" stroke-opacity=".45" stroke-width="3"/>
+   </g><path d="M60 270H420" stroke="#c5d5ef" stroke-width="1" opacity=".3"/></svg>
