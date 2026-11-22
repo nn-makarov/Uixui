@@ -38,36 +38,20 @@ const categories = [
   { key: "OTHER", label: "Другое", Icon: Ellipsis },
 ] as const
 
-function FurnitureSketch({ variant }: { variant: string }) {
-  const mattress = variant === "single" || variant === "double"
-  const chair = ["armchair", "recliner", "seat", "back"].includes(variant)
-  const corner = variant === "corner"
-  const other = variant === "other"
-  return (
-    <svg viewBox="0 0 120 76" aria-hidden="true" className="calc-visual-furniture">
-      <ellipse cx="60" cy="67" rx="43" ry="5" fill="currentColor" opacity=".12" />
-      {mattress ? <g stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
-        <rect x={variant === "single" ? 23 : 13} y="21" width={variant === "single" ? 74 : 94} height="32" rx="7" fill="#f8f4ed"/>
-        <path d="M18 34 H102 M18 43 H102" stroke="#b8c8d8" strokeWidth="1.5" strokeDasharray="3 3"/>
-        <path d="M23 53 V59 M97 53 V59" strokeWidth="3" strokeLinecap="round"/>
-        <rect x="28" y="15" width="24" height="12" rx="5" fill="#fff"/><rect x="68" y="15" width="24" height="12" rx="5" fill="#fff"/>
-      </g> : chair ? <g stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
-        <path d="M34 18 Q34 12 41 12 H76 Q84 12 84 20 V43 H34Z" fill="#d9c7b2"/>
-        <rect x="27" y="38" width="66" height="20" rx="8" fill="#c5ad95"/>
-        <path d="M29 43 H91 M36 58 L32 65 M84 58 L88 65" fill="none" strokeLinecap="round"/>
-        <path d={variant==="recliner"?"M82 44 L99 34 L103 42 L91 52":"M29 24 L20 24 V48 H29 M91 24 H100 V48 H91"} fill="#d9c7b2"/>
-      </g> : other ? <g stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
-        <rect x="31" y="16" width="58" height="42" rx="12" fill="#d9c7b2"/><path d="M44 29 H76 M44 38 H69" stroke="#fff" strokeWidth="3" strokeLinecap="round"/>
-        <path d="M60 5 V12 M60 62 V69 M21 37 H28 M92 37 H99" stroke="var(--primary)" strokeLinecap="round"/>
-      </g> : <g stroke="currentColor" strokeWidth="2" strokeLinejoin="round">
-        <path d={corner?"M18 28 Q18 21 26 21 H65 Q72 21 72 28 V39 H103 V53 H18Z":"M19 28 Q19 21 27 21 H93 Q101 21 101 28 V43 H19Z"} fill="#d9c7b2"/>
-        {corner ? <path d="M72 28 Q72 21 80 21 H94 Q103 21 103 29 V43 H72Z" fill="#c5ad95"/> : null}
-        <path d={variant==="sofa3"?"M43 24 V42 M76 24 V42":"M60 24 V42"} stroke="#f5e9db" strokeWidth="2"/>
-        <rect x="15" y="39" width={corner?92:90} height="18" rx="7" fill="#c5ad95"/>
-        <path d="M24 57 L21 65 M94 57 L97 65" fill="none" strokeLinecap="round"/>
-      </g>}
-    </svg>
-  )
+function FurnitureImage({ variant, alt, className }: { variant: string; alt: string; className?: string }) {
+  const images: Record<string, string> = {
+    sofa2: "/images/calculator/sofa-2.svg",
+    sofa3: "/images/calculator/sofa-3.svg",
+    corner: "/images/calculator/sofa-corner.svg",
+    armchair: "/images/calculator/armchair.svg",
+    recliner: "/images/calculator/recliner.svg",
+    single: "/images/calculator/mattress-single.svg",
+    double: "/images/calculator/mattress-double.svg",
+    seat: "/images/calculator/chair-seat.svg",
+    back: "/images/calculator/chair-seat-back.svg",
+    other: "/images/calculator/sofa-2.svg",
+  }
+  return <img src={images[variant] ?? images.other} alt={alt} className={className} draggable={false} />
 }
 
 const variantNotes: Record<string, string> = {
@@ -160,7 +144,7 @@ export default function CalculatorPage() {
 
               <div className="calc-visual-stage relative mt-3 flex items-center justify-center overflow-hidden rounded-2xl bg-secondary/50">
                 <div className="calc-visual-stage-orbit" aria-hidden="true" />
-                <FurnitureSketch variant={currentItem.variant} />
+                <FurnitureImage variant={currentItem.variant} alt={`${currentItem.title} — иллюстрация мебели`} className="calc-visual-furniture" />
                 <p className="calc-visual-hint">Визуальный выбор мебели</p>
               </div>
 
@@ -189,7 +173,7 @@ export default function CalculatorPage() {
                   const active = selectedVariant === index
                   return <button key={item.variant} type="button" aria-pressed={active} onClick={() => setSelectedVariant(index)}
                     className={`calc-visual-variant ${active ? "is-active" : ""}`}>
-                    <span className="calc-visual-variant-art"><FurnitureSketch variant={item.variant} /></span>
+                    <span className="calc-visual-variant-art"><FurnitureImage variant={item.variant} alt={item.title} className="calc-visual-variant-image" /></span>
                     <span className="min-w-0 flex-1 text-left">
                       <strong className="block text-sm font-semibold">{item.title}</strong>
                       <small className="mt-1 block text-xs text-muted-foreground">{variantNotes[item.variant]}</small>
