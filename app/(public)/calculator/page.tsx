@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { Button } from "@/components/ui/button"
 import { useCartStore } from "@/lib/store/useCartStore"
-import { ArrowRight, Plus, Sofa, Armchair, BedDouble, Chair, Ellipsis, Check, Minus } from "lucide-react"
+import { ArrowRight, Plus, Sofa, Armchair, BedDouble, Ellipsis, Check, Minus } from "lucide-react"
 
 // Тарифы — резервные значения; актуальный прайс загружается из настроек компании.
 const TARIFFS = {
@@ -34,7 +34,7 @@ const categories = [
   { key: "SOFA", label: "Диван", Icon: Sofa },
   { key: "ARMCHAIR", label: "Кресло", Icon: Armchair },
   { key: "MATTRESS", label: "Матрас", Icon: BedDouble },
-  { key: "CHAIR", label: "Стул", Icon: Chair },
+  { key: "CHAIR", label: "Стул", Icon: Armchair },
   { key: "OTHER", label: "Другое", Icon: Ellipsis },
 ] as const
 
