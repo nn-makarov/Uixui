@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { Button } from "@/components/ui/button"
 import { useCartStore } from "@/lib/store/useCartStore"
-import { ArrowRight, Plus, Sofa, Armchair, BedDouble, Chair, Ellipsis, RotateCcw, Check, Minus } from "lucide-react"
+import { ArrowRight, Plus, Sofa, Armchair, BedDouble, Chair, Ellipsis, Check, Minus } from "lucide-react"
 
 // Тарифы — резервные значения; актуальный прайс загружается из настроек компании.
 const TARIFFS = {
@@ -161,8 +161,7 @@ export default function CalculatorPage() {
               <div className="calc-visual-stage relative mt-3 flex items-center justify-center overflow-hidden rounded-2xl bg-secondary/50">
                 <div className="calc-visual-stage-orbit" aria-hidden="true" />
                 <FurnitureSketch variant={currentItem.variant} />
-                <button type="button" className="calc-visual-reset" aria-label="Сбросить ракурс" title="Сбросить ракурс"><RotateCcw size={17} /></button>
-                <p className="calc-visual-hint">Предмет мебели · иллюстрация</p>
+                <p className="calc-visual-hint">Визуальный выбор мебели</p>
               </div>
 
               <div className="calc-visual-tabs mt-3 grid grid-cols-5 gap-1 rounded-2xl bg-secondary/60 p-1.5" aria-label="Категории мебели">
