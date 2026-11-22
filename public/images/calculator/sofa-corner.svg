@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300"><defs>
+ <linearGradient id="fabric" x1="0" y1="0" x2="0.8" y2="1"><stop stop-color="#f4e9dc"/><stop offset=".52" stop-color="#d9c7b5"/><stop offset="1" stop-color="#b9a38f"/></linearGradient>
+ <linearGradient id="seat" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f0e4d8"/><stop offset="1" stop-color="#c9b5a1"/></linearGradient>
+ <linearGradient id="wood" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b78a5c"/><stop offset="1" stop-color="#69482e"/></linearGradient>
+ <linearGradient id="highlight" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#76a7ff" stop-opacity=".62"/><stop offset="1" stop-color="#3678f6" stop-opacity=".3"/></linearGradient>
+ <pattern id="weave" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 1H5M1 0V5" stroke="#fff" stroke-opacity=".13" stroke-width=".7"/></pattern>
+ <filter id="shadow" x="-30%" y="-50%" width="160%" height="200%"><feGaussianBlur stdDeviation="9"/></filter>
+ </defs>
+ <ellipse cx="240" cy="265" rx="170" ry="13" fill="#53627b" opacity=".18" filter="url(#shadow)"/><g stroke="#9f8976" stroke-width="2" stroke-linejoin="round">
+   <path d="M95 115Q95 84 126 84H314Q339 84 339 111V151H388Q411 151 411 177V216H95Z" fill="url(#fabric)"/>
+   <path d="M95 151H339V216H95Z" fill="url(#seat)"/><path d="M339 151H388Q411 151 411 177V216H339Z" fill="url(#fabric)"/>
+   <path d="M106 153H327V208H106Z" fill="url(#highlight)"/><path d="M349 166H398V207H349Z" fill="url(#highlight)"/>
+   <path d="M106 113Q106 94 126 94H309Q328 94 328 114V149H106Z" fill="url(#seat)"/>
+   <path d="M351 119Q351 101 371 101H388Q399 101 399 120V151H351Z" fill="url(#seat)"/>
+   <path d="M88 120Q88 95 112 95H139V211H112Q88 211 88 187Z" fill="url(#fabric)"/><path d="M329 119Q329 95 354 95H378V211H354Q329 211 329 187Z" fill="url(#fabric)"/>
+   <path d="M116 216L110 250M379 216L386 250M144 216L140 246M350 216L356 246" stroke="url(#wood)" stroke-width="12" stroke-linecap="round"/>
+   <path d="M95 148H339M339 160H398" stroke="#fff" stroke-opacity=".42" stroke-width="3"/>
+   </g><path d="M60 270H420" stroke="#c5d5ef" stroke-width="1" opacity=".3"/></svg>
