@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Header } from "@/components/layout/Header"
 import { Footer } from "@/components/layout/Footer"
 import { Button } from "@/components/ui/button"
@@ -11,23 +12,23 @@ import { ArrowRight, Plus } from "lucide-react"
 // Временные тарифы (в копейках)
 const TARIFFS = {
   SOFA: [
-    { variant: "sofa2", title: "Диван 2-местный", price: 250000 },
-    { variant: "sofa3", title: "Диван 3-местный", price: 350000 },
-    { variant: "corner", title: "Диван угловой", price: 450000 },
+    { variant: "sofa2", title: "Диван 2-местный", price: 250000, image: "/images/furniture/sofa_2_seater.svg" },
+    { variant: "sofa3", title: "Диван 3-местный", price: 350000, image: "/images/furniture/sofa_3_seater.svg" },
+    { variant: "corner", title: "Диван угловой", price: 450000, image: "/images/furniture/sofa_corner.svg" },
   ],
   ARMCHAIR: [
-    { variant: "armchair", title: "Кресло обычное", price: 150000 },
-    { variant: "recliner", title: "Кресло-реклайнер", price: 200000 },
+    { variant: "armchair", title: "Кресло обычное", price: 150000, image: "/images/furniture/armchair.svg" },
+    { variant: "recliner", title: "Кресло-реклайнер", price: 200000, image: "/images/furniture/recliner.svg" },
   ],
   MATTRESS: [
-    { variant: "single", title: "Матрас односпальный", price: 180000 },
-    { variant: "double", title: "Матрас двуспальный", price: 250000 },
+    { variant: "single", title: "Матрас односпальный", price: 180000, image: "/images/furniture/mattress_single.svg" },
+    { variant: "double", title: "Матрас двуспальный", price: 250000, image: "/images/furniture/mattress_double.svg" },
   ],
   CHAIR: [
-    { variant: "seat", title: "Стул (сиденье)", price: 80000 },
-    { variant: "back", title: "Стул (сиденье + спинка)", price: 120000 },
+    { variant: "seat", title: "Стул (сиденье)", price: 80000, image: "/images/furniture/chair_seat.svg" },
+    { variant: "back", title: "Стул (сиденье + спинка)", price: 120000, image: "/images/furniture/chair_seat_back.svg" },
   ],
-  OTHER: [{ variant: "other", title: "Другая мебель", price: 0 }],
+  OTHER: [{ variant: "other", title: "Другая мебель", price: 0, image: "/images/furniture/other.svg" }],
 }
 
 export default function CalculatorPage() {
@@ -113,17 +114,33 @@ export default function CalculatorPage() {
                 ))}
               </div>
 
-              <div className="grid gap-3">
-                {TARIFFS[category].map((item, idx) => (
-                  <div
-                    key={item.variant}
-                    onClick={() => setSelectedVariant(idx)}
-                    className={`p-4 border rounded-xl cursor-pointer flex justify-between items-center transition-colors ${selectedVariant === idx ? 'border-primary bg-primary/5' : 'hover:border-primary/50'}`}
-                  >
-                    <span className="font-medium">{item.title}</span>
-                    <span className="text-muted-foreground">{category === "OTHER" ? "По фото" : `${((livePrices[item.variant] ?? item.price) / 100).toLocaleString('ru-RU')} ₽`}</span>
-                  </div>
-                ))}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {TARIFFS[category].map((item, idx) => {
+                  const selected = selectedVariant === idx
+                  return (
+                    <button
+                      key={item.variant}
+                      type="button"
+                      aria-pressed={selected}
+                      onClick={() => setSelectedVariant(idx)}
+                      className={`group min-w-0 overflow-hidden rounded-2xl border text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary ${selected ? "border-primary bg-primary/5 shadow-sm" : "border-border bg-card hover:border-primary/50"}`}
+                    >
+                      <div className="flex h-36 items-center justify-center bg-muted/40 px-4 py-2">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={220}
+                          height={150}
+                          className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-[1.04]"
+                        />
+                      </div>
+                      <div className="flex min-h-[76px] items-center justify-between gap-3 p-4">
+                        <span className="font-medium leading-snug">{item.title}</span>
+                        <span className="shrink-0 text-sm text-muted-foreground">{category === "OTHER" ? "По фото" : `${((livePrices[item.variant] ?? item.price) / 100).toLocaleString('ru-RU')} ₽`}</span>
+                      </div>
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
